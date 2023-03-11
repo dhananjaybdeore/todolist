@@ -8,9 +8,10 @@ const filterOption = document.querySelector(".filter-todo");
 
 // event listeneres
 document.addEventListener("DOMContentLoaded", getTodos);
+document.addEventListener("change", filterTodo);
 todoButton.addEventListener("click", addItem);
 todoList.addEventListener("click", deleteCheck);
-filterOption.addEventListener("click", filterTodo);
+// filterOption.addEventListener("click", filterTodo);
 //functions
 function addItem(item) {
   if (todoInput.value != "") {
@@ -40,7 +41,7 @@ function addItem(item) {
     todoInput.value = "";
   } else {
     console.log("Please add something to the list");
-    alert("Please add something to the list");
+    alert("Add some task before submitting");
   }
 }
 
@@ -50,7 +51,7 @@ function deleteCheck(event) {
     const removableItem = item.parentElement;
     removableItem.classList.add("fall");
     removeLocalTodos(removableItem);
-    removableItem.addEventListener("transitionend", function () {
+    removableItem.addEventListener("transitionend", function() {
       removableItem.remove();
     });
     // removableItem.remove();
@@ -64,7 +65,7 @@ function deleteCheck(event) {
 function filterTodo(e) {
   const todos = todoList.childNodes;
   // console.log(e.target.value);
-  todos.forEach(function (todo) {
+  todos.forEach(function(todo) {
     switch (e.target.value) {
       case "all":
         todo.style.display = "flex";
